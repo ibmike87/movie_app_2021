@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 
 class App extends React.Component {
-    
+
     //state initialize
     state = {
         isLoading: true,
