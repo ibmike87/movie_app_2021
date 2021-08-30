@@ -13,30 +13,30 @@ class App extends React.Component {
     };
 
     getMovies = async () => {
-        console.log("=== getMovies start ===");
+        // console.log("=== getMovies start ===");
         const {
             data: {
                 data: { movies }
             }
         } = await axios.get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating");
 
-        console.log("=== getMovies end ===");   //여기는 axios 비동기 통신이 종료된 후에 순차 실행된다.
+        // console.log("=== getMovies end ===");   //여기는 axios 비동기 통신이 종료된 후에 순차 실행된다.
 
-        console.log("=== setState start ===");
+        // console.log("=== setState start ===");
         this.setState({isLoading: false, movies});
-        console.log("=== setState end ===");
+        // console.log("=== setState end ===");
 
     }
 
     componentWillMount() {
-        console.log("=== componentWillMount start ===");
-        console.log("=== componentWillMount end ===");
+        // console.log("=== componentWillMount start ===");
+        // console.log("=== componentWillMount end ===");
     }
 
     componentDidMount() {
-        console.log("=== componentDidMount start ===");
+        // console.log("=== componentDidMount start ===");
         this.getMovies();
-        console.log("=== componentDidMount end ===");
+        // console.log("=== componentDidMount end ===");
     }
 
     render() {
@@ -49,24 +49,24 @@ class App extends React.Component {
             isLoading ?
                 (
                     <div className="loader">
-                        <span className="loader__text">Now Loading ...</span>
+                        <span className="loader_text">Now Loading ...</span>
                     </div>
                 )
                 : /*"We are Ready!"*/
                 (
-                    <div className="movie">
+                    <div className="movies">
                         {
                         movies.map((movie, idx) => {
-                        console.log(movie);
-                        return <Movie
-                            key={movie.id}
-                            idx={idx +1}
-                            score={movie.rating}
-                            year={movie.year}
-                            title={movie.title}
-                            summary={movie.summary}
-                            poster={movie.medium_cover_image}
-                        />;
+                            return <Movie
+                                key={movie.id}
+                                idx={idx +1}
+                                score={movie.rating}
+                                year={movie.year}
+                                title={movie.title}
+                                summary={movie.summary}
+                                poster={movie.medium_cover_image}
+                                genres={movie.genres}
+                            />;
                         })
                     }
                     </div>
